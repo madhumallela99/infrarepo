@@ -13,7 +13,7 @@ pipeline {
     }
 
     stage('Terraform Init') {
-      steps { sh 'terraform init' }
+      steps { sh 'terraform init -upgrade' }
     }
 
     stage('Terraform Validate') {
@@ -29,6 +29,7 @@ pipeline {
     }
   }
 }
+
 
 
 
