@@ -1,6 +1,6 @@
 resource "aws_codedeploy_app" "eks_app" {
   name             = "springboot-eks-app"
-  compute_platform = "EKS"
+  compute_platform = "Server"
 }
 
 resource "aws_codedeploy_deployment_group" "eks_dg" {
@@ -19,3 +19,4 @@ resource "aws_codedeploy_deployment_group" "eks_dg" {
     }
   }
 }
+
