@@ -1,8 +1,3 @@
-resource "aws_codedeploy_app" "eks_app" {
-  name             = "springboot-eks-app"
-  compute_platform = "Server"
-}
-
 resource "aws_codedeploy_deployment_group" "eks_dg" {
   app_name              = aws_codedeploy_app.eks_app.name
   deployment_group_name = "springboot-dg"
@@ -14,9 +9,16 @@ resource "aws_codedeploy_deployment_group" "eks_dg" {
   }
 
   blue_green_deployment_config {
+
     deployment_ready_option {
       action_on_timeout = "CONTINUE_DEPLOYMENT"
     }
+
+    terminate_blue_instances_on_deployment_success {
+      action                           = "TERMINATE"
+      termination_wait_time_in_minutes = 5
+    }
   }
 }
+
 
